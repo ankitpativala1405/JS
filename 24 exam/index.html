@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <form action="" id="myform">
+        <label for="name">NAME</label>
+        <input type="text" id="name">
+        <br>
+        <br>
+        <label for="number">NUMBER</label>
+        <input type="number" id="number">
+        <br>
+        <br>
+        <label for="email">EMAIL</label>
+        <input type="email" id="email">
+        <br>
+        <br>
+        <label for="course">JOB ROLE</label>
+        <select id="course">
+            <option value="full-stack">full-stack</option>
+            <option value="back-end">back-end</option>
+            <option value="front-end">front-end</option>
+            <option value="ux-ui designer">ux-ui designer</option>
+        </select>
+        <br>
+        <br>
+        <label for="experience">EXPERIENCE</label>
+        <input type="number" id="experience">
+        <br>
+        <br>
+        <label for="salary">SALARY</label>
+        <input type="number" id="salary">
+        <br>
+        <br>
+        <label for="image">PROFLE IMAGE</label>
+        <input type="img" id="image">
+        <br>
+        <br>
+        <input type="submit" id="name" onclick=experiencelvl()>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <td>NAME</td>
+                <td>NUMBER</td>
+                <td>EMAIL</td>
+                <td>JOB ROLE</td>
+                <td>EXPERIENCE</td>
+                <td >EXPERIENCE LEVEL</td>
+                <td>SALARY</td>
+                <td>IMAGE</td>
+                <td><input type="button" name="" value="DELETE ALL" onclick=dltall()></td>
+
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+
+        </tbody>
+    </table>
+</body>
+<script src="./index.js"></script>
+
+</html>
