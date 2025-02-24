@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <form action="" class="signupform" id="myForm">
+    <strong><label for="name"> FIRSTNAME:</label></strong>
+    <input type="text" id="name" placeholder=" NAME" />
+    <br />
+
+    <strong><label for="surname"> LAST NAME:</label></strong>
+    <input type="text" id="surname" placeholder="SURNAME" />
+    <br />
+
+    <strong><label for="mobile number">CONTACT NO:</label></strong>
+    <input type="number" id="mobile number" placeholder=" NUMBER" min="" max="" />
+    <br />
+    <strong><label for="alternative number">ALTERNATIVE CONTACT NUMBER</label></strong>
+    <input type="number" id="alternative number" placeholder="ALTERNATIVE NUMBER" min="" max="" />
+    <br />
+
+    <strong><label for="email">EMAIL</label></strong>
+    <input type="email" id="email" placeholder="email" />
+    <br />
+
+    <strong><label for="adress" id="saddress">SHIPPING ADDRESS</label></strong>
+    <input type="text" id="adress1" placeholder="line 1" /><br />
+    <input type="text" id="adress2" placeholder="line 2" /><br />
+    <input type="text" id="adress3" placeholder="line 3" /><br />
+
+    <strong><label for="landmark">LANDMARK</label></strong>
+    <input type="text" id="landmark" />
+    <br />
+    <strong><label for="pincode">PINCODE</label></strong>
+    <input type="number" id="pincode" min="" max="" />
+    <br />
+
+    <strong><label for="city">CITY</label></strong>
+    <input type="text" id="city" />
+    <br />
+    <strong><label for="state">STATE</label></strong>
+    <input type="text" id="state" />
+    <br />
+    <strong><label for="password">CREATE YOUR PASSWORD</label></strong>
+    <input type="password" id="password" placeholder="PASSWORD" />
+    <br />
+    <strong><label for="rpassword">RETYPE YOUR PASSWORD</label></strong>
+    <input type="password" id="rpassword" placeholder="RETYPE YOUR PASSWORD" />
+    <br />
+    <input type="reset" value="reset" />
+    <input type="submit" value="submit" id="downloadBtn" />
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>CONTACT NO</th>
+        <th>ALTERNATIVE NO</th>
+        <th>EMAIL</th>
+        <th>ADDRESS</th>
+        <th>LANDMARK</th>
+        <th>PIN CODE</th>
+        <th>CITY</th>
+        <th>STATE</th>
+        <th>PASSWORD</th>
+        <th><input type="button" value="delete all" onclick=dltall()></th>
+      </tr>
+    </thead>
+    <tbody id="tablebody"></tbody>
+  </table>
+</body>
+<script src="./index.js"></script>
+
+</html>
