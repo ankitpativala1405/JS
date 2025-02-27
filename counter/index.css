@@ -1,0 +1,12 @@
+.main{
+    width: 100%;
+    background-image:url(https://cdn.pixabay.com/photo/2018/08/21/23/29/forest-3622519__340.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+}
+#allcount{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
