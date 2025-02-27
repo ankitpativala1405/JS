@@ -1,0 +1,98 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Body styling */
+  body {
+    background-color: #f7f9fc; /* Light background for the page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  /* Main container */
+  #firstraw, #secondraw {
+    display: flex;
+    justify-content: space-between; /* Space out the elements */
+    max-width: 900px;
+    padding: 20px;
+    margin-bottom: 30px; /* Space between the first and second row */
+  }
+  
+  /* Styling for each individual block (e.g., Date, Month, Year, etc.) */
+  #firstraw div, #secondraw div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1; /* Ensure equal width distribution */
+    margin: 5px;
+  }
+  
+  /* Hover effect for individual blocks */
+  #firstraw div:hover, #secondraw div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Heading styles (h3 for labels) */
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Time value (h6) styles */
+  h6 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d98f0;
+    text-align: center;
+    background-color: #f0f7ff;
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover effect for time values (h6) */
+  h6:hover {
+    background-color: #e1f3ff;
+    transform: scale(1.05);
+  }
+  
+  /* Optional: Gradient background for the body */
+  body {
+    background: linear-gradient(to top right, #e3f2fd, #ffffff);
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    #firstraw, #secondraw {
+      flex-direction: column; /* Stack elements vertically on smaller screens */
+      align-items: center; /* Center the blocks */
+    }
+  
+    #firstraw div, #secondraw div {
+      max-width: 300px; /* Limit the width of each block */
+      margin: 10px 0; /* Add vertical spacing between blocks */
+    }
+  }
+  
