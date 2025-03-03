@@ -1,0 +1,61 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+div {
+    text-align: center;
+    display: flex;
+
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 10px;
+    width: 150px;
+    outline: none;
+}
+
+/* Button Hover Effects */
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #3e8e41;
+    transform: scale(0.98);
+}
+
+/* Button Layout */
+div > div {
+    margin: 15px 0;
+}
+
