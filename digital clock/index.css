@@ -16,6 +16,31 @@
     font-size: 16px;
     margin: 0;
   }
+
+  /* Navigation styling */
+nav {
+  margin-top: 150px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px; 
+}
+
+nav a {
+  color: #333;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #007bff;
+  color: white;
+}
   
   /* Main container */
   #firstraw, #secondraw {
