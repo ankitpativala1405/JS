@@ -1,7 +1,8 @@
 let count = 0;
+let counter;
 
 const startcount = () => { 
-     counter = setInterval(() => {
+      counter = setInterval(() => {
         count++;
         document.getElementById("countlimit").innerHTML = count;
     }, 50);
@@ -12,5 +13,8 @@ const stopcount=()=> {
 }
 
 const resetcount=()=>{
-    document.getElementById("countlimit").innerHTML = "";
+    stopcount()
+    count = 0;
+    document.getElementById("countlimit").innerHTML = count;
+
 }
