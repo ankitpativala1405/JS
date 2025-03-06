@@ -41,11 +41,13 @@ function uimaker() {
     td11.innerHTML = ele.password;
     let td12=document.createElement("td");
     td12.innerHTML=ele.username;
+    let td13=document.createElement("td");
+    td13.innerHTML=ele.passwordtype;
     let btn = document.createElement("button");
     btn.addEventListener("click",()=>handledelete(i))
     btn.innerHTML = "delete";
     let tr = document.createElement("tr");
-    tr.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11,td12, btn);
+    tr.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11 , td12 , td13, btn);
 
     document.getElementById("tablebody").append(tr);
   });
@@ -55,29 +57,58 @@ document
   .getElementById("myForm")
   .addEventListener("submit", function customer(e) {
     e.preventDefault();
-    let name = document.getElementById("name").value;
-    let surname = document.getElementById("surname").value;
-    let contact = document.getElementById("mobile number").value;
-    let acontact = document.getElementById("alternative number").value;
-    let email = document.getElementById("email").value;
-    let landmark = document.getElementById("landmark").value;
-    let pincode = document.getElementById("pincode").value;
-    let city = document.getElementById("city").value;
-    let state = document.getElementById("state").value;
-    let password = document.getElementById("password").value;
-    let ad1 = document.getElementById("adress1").value;
-    let ad2 = document.getElementById("adress2").value;
-    let ad3 = document.getElementById("adress3").value;
+    let name = getvalue("name");
+    let surname = getvalue("surname");
+    let contact = getvalue("mobile number");
+    let acontact = getvalue("alternative number");
+    let email = getvalue("email");
+    let landmark = getvalue("landmark");
+    let pincode = getvalue("pincode");
+    let city = getvalue("city");
+    let state = getvalue("state");
+    let password = getvalue("password");
+    let ad1 = getvalue("adress1");
+    let ad2 = getvalue("adress2");
+    let ad3 = getvalue("adress3");
     let address = {
       ad1,
       ad2,
       ad3,
     };
-    let rpassword = document.getElementById("rpassword").value;
+    let rpassword =getvalue("rpassword")
     let username=getvalue("username")
     let usernameregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
-   let PasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{8,12}$/;
+    let easypasswordregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,8}$/;
+   let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{8,12}$/;
+   let strongpasswordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{12,}$/;
 
+
+    let passwordtype;
+    let PasswordRegex;
+
+    if (easypasswordregex.test(password)) {
+        PasswordRegex = easypasswordregex;
+    } else if (mediumPasswordRegex.test(password)) {
+        PasswordRegex = mediumPasswordRegex;
+    } else if (strongpasswordRegex.test(password)) {
+        PasswordRegex = strongpasswordRegex;
+    } else {
+        errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        return false;
+    }
+
+
+    if (easypasswordregex.test(password)) {
+      passwordtype = "Easy";  
+  } else if (mediumPasswordRegex.test(password)) {
+      passwordtype = "Medium"; 
+  } else if (strongpasswordRegex.test(password)) {
+      passwordtype = "Strong"; 
+  } else {
+       errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+      return false;
+  }
+    
 
             let detail = {
       name: name,
@@ -93,6 +124,7 @@ document
       state: state,
       password: password,
       username:username,
+      passwordtype:passwordtype,
     };
 
    
@@ -141,7 +173,6 @@ document
  if (!PasswordRegex.test(password)) {
    errordetail("errorpassword","Password must contain at least 8 characters, including uppercase letters, lowercase letters, numbers, and special characters.");
    return;
-  
  }
   
    
