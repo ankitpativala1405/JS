@@ -55,7 +55,7 @@ function uimaker() {
 
 document
   .getElementById("myForm")
-  .addEventListener("submit", function customer(e) {
+  .addEventListener("input", function customer(e) {
     e.preventDefault();
     let name = getvalue("name");
     let surname = getvalue("surname");
@@ -89,6 +89,7 @@ document
     if (easypasswordregex.test(password)) {
         PasswordRegex = easypasswordregex;
         document.getElementById("password").setAttribute("class","passed")
+        errordetail("errorpassword","Your password is Easy!!  .")
     } else if (mediumPasswordRegex.test(password)) {
         PasswordRegex = mediumPasswordRegex;
         document.getElementById("password").setAttribute("class","passed")
