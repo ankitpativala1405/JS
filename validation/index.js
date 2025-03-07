@@ -88,16 +88,16 @@ document
 
     if (easypasswordregex.test(password)) {
         PasswordRegex = easypasswordregex;
-        document.getElementById("errorpassword").setAttribute("class","passed")
+        document.getElementById("password").setAttribute("class","passed")
     } else if (mediumPasswordRegex.test(password)) {
         PasswordRegex = mediumPasswordRegex;
-        document.getElementById("errorpassword").setAttribute("class","passed")
+        document.getElementById("password").setAttribute("class","passed")
     } else if (strongpasswordRegex.test(password)) {
         PasswordRegex = strongpasswordRegex;
-        document.getElementById("errorpassword").setAttribute("class","passed")
+        document.getElementById("password").setAttribute("class","passed")
     } else {
         errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-        document.getElementById("errorpassword").setAttribute("class","err")
+        document.getElementById("password").setAttribute("class","err")
         return false;
     }
 

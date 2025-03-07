@@ -174,11 +174,10 @@ tbody tr:hover {
     opacity: 0.8; 
   }
 
-
   .err {
-    border: 1px solid red;
+    border: 1px solid red !important;
   }
   .passed{
-    border: 1px solid green;
+    border: 1px solid green !important;
   }
   
