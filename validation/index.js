@@ -79,8 +79,8 @@ document
     let username=getvalue("username")
     let usernameregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
     let easypasswordregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,8}$/;
-   let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{8,12}$/;
-   let strongpasswordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{12,}$/;
+   let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{9,12}$/;
+   let strongpasswordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{13,}$/;
 
 
     let passwordtype;
@@ -88,12 +88,16 @@ document
 
     if (easypasswordregex.test(password)) {
         PasswordRegex = easypasswordregex;
+        document.getElementById("errorpassword").setAttribute("class","passed")
     } else if (mediumPasswordRegex.test(password)) {
         PasswordRegex = mediumPasswordRegex;
+        document.getElementById("errorpassword").setAttribute("class","passed")
     } else if (strongpasswordRegex.test(password)) {
         PasswordRegex = strongpasswordRegex;
+        document.getElementById("errorpassword").setAttribute("class","passed")
     } else {
         errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        document.getElementById("errorpassword").setAttribute("class","err")
         return false;
     }
 
@@ -171,7 +175,7 @@ document
     }
 
  if (!PasswordRegex.test(password)) {
-   errordetail("errorpassword","Password must contain at least 8 characters, including uppercase letters, lowercase letters, numbers, and special characters.");
+   errordetail("errorpassword","Password must contain at least 5 characters, including uppercase letters, lowercase letters, numbers, and special characters.");
    return;
  }
   

@@ -173,4 +173,12 @@ tbody tr:hover {
   #buttons input:hover {
     opacity: 0.8; 
   }
+
+
+  .err {
+    border: 1px solid red;
+  }
+  .passed{
+    border: 1px solid green;
+  }
   
