@@ -53,9 +53,22 @@ function uimaker() {
   });
 }
 
-document
+  const errordetail=(id,msg)=>{
+    let error = document.createElement("p");
+    error.innerHTML = msg;
+    
+    document.getElementById(id).append(error);
+    return; 
+  }
+
+  const getvalue = (id) => {
+    return document.getElementById(id).value;
+  };
+
+
+  document
   .getElementById("myForm")
-  .addEventListener("input", function customer(e) {
+  .addEventListener("submit", function customer(e) {
     e.preventDefault();
     let name = getvalue("name");
     let surname = getvalue("surname");
@@ -75,52 +88,107 @@ document
       ad2,
       ad3,
     };
-    let rpassword =getvalue("rpassword")
-    let username=getvalue("username")
-    let usernameregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
-    let easypasswordregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,8}$/;
-   let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{9,12}$/;
-   let strongpasswordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{13,}$/;
+    let rpassword = getvalue("rpassword");
+    let username = getvalue("username");
 
+    let easypasswordregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,8}$/;
+    let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{9,12}$/;
+    let strongpasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{13,}$/;
 
     let passwordtype;
+
+    // 1. Validate Name
+    if (name.length < 2) {
+      errordetail("errorname", "Please enter a valid name.");
+      return;
+    }
+
+    // 2. Validate Surname
+    if (surname.length < 2) {
+      errordetail("errorsurname", "Please enter a valid surname.");
+      return;
+    }
+
+    // 3. Validate Contact
+    if (contact.length < 10 || contact.length > 10) {
+      errordetail("errorcontact", "Please enter a valid contact number");
+      return;
+    }
+
+    // 4. Validate Email
+    if (email.length < 6) {
+      errordetail("erroremail", "Please enter a valid email");
+      return;
+    }
+
+    // 5. Validate Pincode
+    if (pincode.length < 6 || pincode.length > 6) {
+      errordetail("errorpincode", "Please enter a valid pincode number");
+      return;
+    }
+
+    // 6. Validate City
+    if (city.length < 3) {
+      errordetail("errorcity", "Please enter a valid city name");
+      return;
+    }
+
+    // 7. Validate State
+    if (state.length < 3) {
+      errordetail("errorstate", "Please enter a valid state name");
+      return;
+    }
+
+    // 8. Validate Password
+    if (easypasswordregex.test(password)) {
+      passwordtype = "Easy";
+    } else if (mediumPasswordRegex.test(password)) {
+      passwordtype = "Medium";
+    } else if (strongpasswordRegex.test(password)) {
+      passwordtype = "Strong";
+    } else {
+      errordetail("errorpassword", "your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+      return;
+    }
+
     let PasswordRegex;
 
     if (easypasswordregex.test(password)) {
         PasswordRegex = easypasswordregex;
-        document.getElementById("password").setAttribute("class","passed")
-        errordetail("errorpassword","Your password is Easy!!  .")
+       document.getElementById("password").setAttribute("class","passed")
+       errordetail("errorpassword", "your password is easy to guess");
     } else if (mediumPasswordRegex.test(password)) {
         PasswordRegex = mediumPasswordRegex;
-        document.getElementById("password").setAttribute("class","passed")
+       document.getElementById("password").setAttribute("class","passed")
+       errordetail("errorpassword", "your password is medium strength");
     } else if (strongpasswordRegex.test(password)) {
         PasswordRegex = strongpasswordRegex;
-        document.getElementById("password").setAttribute("class","passed")
+       document.getElementById("password").setAttribute("class","passed")
+       errordetail("errorpassword", "your password is strong strength");
     } else {
-        errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-        document.getElementById("password").setAttribute("class","err")
+       document.getElementById("password").setAttribute("class","err")
+       errordetail("errorpassword", "your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
         return false;
     }
 
+    if(!PasswordRegex){
+       errordetail("errorpassword", "your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+      return;
+    }
 
-    if (easypasswordregex.test(password)) {
-      passwordtype = "Easy";  
-  } else if (mediumPasswordRegex.test(password)) {
-      passwordtype = "Medium"; 
-  } else if (strongpasswordRegex.test(password)) {
-      passwordtype = "Strong"; 
-  } else {
-       errordetail("errorpassword","Password must be at least 5 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-      return false;
-  }
-    
+    // 9. Validate Username
+    let usernameregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
+    if (!usernameregex.test(username)) {
+      errordetail("errorusername", "Invalid username. It must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.");
+      return;
+    }
 
-            let detail = {
+    // Prepare employee details if all validations are passed
+    let detail = {
       name: name,
       surname: surname,
       contact: contact,
       acontact: acontact,
-
       email: email,
       address: address,
       landmark: landmark,
@@ -128,82 +196,12 @@ document
       city: city,
       state: state,
       password: password,
-      username:username,
-      passwordtype:passwordtype,
+      username: username,
+      passwordtype: passwordtype,
     };
-
-   
-
-    if (name.length < 2) {
-        errordetail("errorname","Please enter a valid name.")
-        return;
-    }
-
-    if (surname.length<2) {
-        errordetail("errorsurname","Please enter a valid surname.")
-        return;
-    }
-
-
-    if(contact.length<10 || contact.length>10){
-        errordetail("errorcontact","Please enter a valid contact number")
-        return;
-    }
-
-    if(acontact.length<10 || acontact.length>10){
-        errordetail("erroralternative","Please enter a valid alternative contact number")
-        return;
-    }
-
-    if(email.length<6){
-        errordetail("erroremail","Please enter a valid email")
-        return;
-    }
-
-    if(pincode.length<6 || pincode.length>6){
-        errordetail("errorpincode","Please enter a valid pincode number")
-        return;
-    }
-
-    if(city.length<3){
-        errordetail("errorcity","Please enter a valid city name")
-        return;
-    }
-
-    if(state.length<3){
-        errordetail("errorstate","Please enter a valid state name")
-        return;
-    }
-
- if (!PasswordRegex.test(password)) {
-   errordetail("errorpassword","Password must contain at least 5 characters, including uppercase letters, lowercase letters, numbers, and special characters.");
-   return;
- }
-  
-   
-    if (!usernameregex.test(username)) {
-      errordetail("errorusername","Invalid username. It must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.");
-      return;
-  }
-  
 
     employee.push(detail);
     uimaker();
   });
-
-  const errordetail=(id,msg)=>{
-    let error = document.createElement("p");
-    error.innerHTML = msg;
-    
-    document.getElementById(id).append(error);
-    return; 
-  }
-
-  const getvalue = (id) => {
-    return document.getElementById(id).value;
-  };
-
-
   
- 
-  
+
