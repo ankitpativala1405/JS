@@ -1,5 +1,5 @@
 let employee = [];
-
+ let passwordinput=document.getElementById("password");
 const handledelete = (index) => {
   employee.splice(index, 1);
   uimaker();
@@ -155,20 +155,20 @@ function uimaker() {
 
     if (easypasswordregex.test(password)) {
         PasswordRegex = easypasswordregex;
-       document.getElementById("password").setAttribute("class","passed")
+        document.getElementById("password").setAttribute("class","passed")
        errordetail("errorpassword", "your password is easy to guess");
     } else if (mediumPasswordRegex.test(password)) {
         PasswordRegex = mediumPasswordRegex;
-       document.getElementById("password").setAttribute("class","passed")
+        document.getElementById("password").setAttribute("class","passed")
        errordetail("errorpassword", "your password is medium strength");
     } else if (strongpasswordRegex.test(password)) {
         PasswordRegex = strongpasswordRegex;
-       document.getElementById("password").setAttribute("class","passed")
-       errordetail("errorpassword", "your password is strong strength");
+        document.getElementById("password").setAttribute("class","passed")
+       errordetail("errorpassword","your password is strong strength");
     } else {
-       document.getElementById("password").setAttribute("class","err")
-       errordetail("errorpassword", "your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
-        return false;
+      document.getElementById("password").setAttribute("class","failed")
+       errordetail("errorpassword","your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+        return;
     }
 
     if(!PasswordRegex){
@@ -183,7 +183,6 @@ function uimaker() {
       return;
     }
 
-    // Prepare employee details if all validations are passed
     let detail = {
       name: name,
       surname: surname,
@@ -204,4 +203,3 @@ function uimaker() {
     uimaker();
   });
   
-
