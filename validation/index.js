@@ -1,15 +1,9 @@
-
 let employee = [];
-const handledelete = (index) => {
-employee.splice(index, 1);
-uimaker();
-};
 
-function dltall(){
+function deleteall(){
 let tableBody = document.getElementById("tablebody");
 tableBody.innerHTML = "";
 }
-
 
 function uimaker() {
 let tableBody = document.getElementById("tablebody");
@@ -44,7 +38,10 @@ td12.innerHTML=ele.username;
 let td13=document.createElement("td");
 td13.innerHTML=ele.passwordtype;
 let btn = document.createElement("button");
-btn.addEventListener("click",()=>handledelete(i))
+btn.addEventListener("click",()=>{
+  employee.splice(i, 1);
+  uimaker();
+})
 btn.innerHTML = "delete";
 let tr = document.createElement("tr");
 tr.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10, td11 , td12 , td13, btn);
@@ -94,17 +91,21 @@ let username = getvalue("username");
 let easypasswordregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,8}$/;
 let mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{9,12}$/;
 let strongpasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{13,}$/;
+let nameRegex = /^[A-Za-z\s]{2,}$/;
+let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+let cityRegex = /^[A-Za-z\s\-]+$/;
+
 
 let passwordtype;
 
 // 1. Validate Name
-if (name.length < 2) {
+if (!nameRegex.test(name)) {
   errordetail("errorname", "Please enter a valid name.");
   return;
 }
 
 // 2. Validate Surname
-if (surname.length < 2) {
+if (!nameRegex.test(name)) {
   errordetail("errorsurname", "Please enter a valid surname.");
   return;
 }
@@ -115,8 +116,15 @@ if (contact.length < 10 || contact.length > 10) {
   return;
 }
 
+//contact and alternative contact not same
+
+if(contact == acontact){
+  errordetail("erroracontact", "ALTERNATIVE CONTACT NO. should not be same as CONTACT NO.");
+  return;
+}
+
 // 4. Validate Email
-if (email.length < 6) {
+if (!emailRegex.test(email)) {
   errordetail("erroremail", "Please enter a valid email");
   return;
 }
@@ -128,13 +136,13 @@ if (pincode.length < 6 || pincode.length > 6) {
 }
 
 // 6. Validate City
-if (city.length < 3) {
+if (!cityRegex.test(city)) {
   errordetail("errorcity", "Please enter a valid city name");
   return;
 }
 
 // 7. Validate State
-if (state.length < 3) {
+if (!cityRegex.test(city)) {
   errordetail("errorstate", "Please enter a valid state name");
   return;
 }
@@ -142,15 +150,15 @@ if (state.length < 3) {
 // 8. Validate Password
 if (easypasswordregex.test(password)) {
 passwordtype = "Easy";
-document.getElementById("password").setAttribute("class", "passed"); // Mark as failed until recheck
+document.getElementById("password").setAttribute("class", "passed"); 
 } else if (mediumPasswordRegex.test(password)) {
 passwordtype = "Medium";
-document.getElementById("password").setAttribute("class", "passed"); // Mark as failed until recheck
+document.getElementById("password").setAttribute("class", "passed"); 
 } else if (strongpasswordRegex.test(password)) {
 passwordtype = "Strong";
-document.getElementById("password").setAttribute("class", "passed"); // Strong password
+document.getElementById("password").setAttribute("class", "passed"); 
 } else {
-document.getElementById("password").setAttribute("class", "failed"); // Invalid password case
+document.getElementById("password").setAttribute("class", "failed"); 
 errordetail("errorpassword", "Your password should be at least 5 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
 return;
 }
@@ -164,6 +172,12 @@ if (easypasswordregex.test(password)) {
    errordetail("errorpassword","your password is strong strength");
 } 
 
+//password and retype password check
+
+if (password!== rpassword) {
+  errordetail("errorretype", "RETYPE YOUR PASSWORD do not match with CREATE YOUR PASSWORD.");
+  return;
+}
 
 // 9. Validate Username
 let usernameregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
