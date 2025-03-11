@@ -1,5 +1,4 @@
 let employee = [];
- let passwordinput=document.getElementById("password");
 const handledelete = (index) => {
   employee.splice(index, 1);
   uimaker();
