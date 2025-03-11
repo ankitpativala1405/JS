@@ -101,18 +101,21 @@ let passwordtype;
 // 1. Validate Name
 if (!nameRegex.test(name)) {
   errordetail("errorname", "Please enter a valid name.");
+  document.getElementById("name").setAttribute("class", "failed"); 
   return;
 }
 
 // 2. Validate Surname
 if (!nameRegex.test(name)) {
   errordetail("errorsurname", "Please enter a valid surname.");
+  document.getElementById("surname").setAttribute("class", "failed"); 
   return;
 }
 
 // 3. Validate Contact
 if (contact.length < 10 || contact.length > 10) {
   errordetail("errorcontact", "Please enter a valid contact number");
+  document.getElementById("mobile number").setAttribute("class", "failed"); 
   return;
 }
 
@@ -120,30 +123,35 @@ if (contact.length < 10 || contact.length > 10) {
 
 if(contact == acontact){
   errordetail("erroracontact", "ALTERNATIVE CONTACT NO. should not be same as CONTACT NO.");
+  document.getElementById("alternative number").setAttribute("class", "failed"); 
   return;
 }
 
 // 4. Validate Email
 if (!emailRegex.test(email)) {
   errordetail("erroremail", "Please enter a valid email");
+  document.getElementById("email").setAttribute("class", "failed"); 
   return;
 }
 
 // 5. Validate Pincode
 if (pincode.length < 6 || pincode.length > 6) {
   errordetail("errorpincode", "Please enter a valid pincode number");
+  document.getElementById("pincode").setAttribute("class", "failed"); 
   return;
 }
 
 // 6. Validate City
 if (!cityRegex.test(city)) {
   errordetail("errorcity", "Please enter a valid city name");
+  document.getElementById("city").setAttribute("class", "failed"); 
   return;
 }
 
 // 7. Validate State
 if (!cityRegex.test(city)) {
   errordetail("errorstate", "Please enter a valid state name");
+  document.getElementById("state").setAttribute("class", "failed"); 
   return;
 }
 
@@ -175,6 +183,7 @@ if (easypasswordregex.test(password)) {
 //password and retype password check
 
 if (password!== rpassword) {
+  document.getElementById("rpassword").setAttribute("class", "failed"); 
   errordetail("errorretype", "RETYPE YOUR PASSWORD do not match with CREATE YOUR PASSWORD.");
   return;
 }
@@ -183,6 +192,7 @@ if (password!== rpassword) {
 let usernameregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,15}$/;
 if (!usernameregex.test(username)) {
   errordetail("errorusername", "Invalid username. It must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.");
+  document.getElementById("username").setAttribute("class", "failed"); 
   return;
 }
 
