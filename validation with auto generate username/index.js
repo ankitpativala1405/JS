@@ -105,6 +105,8 @@ if (!nameRegex.test(name)) {
   errordetail("errorname", "Please enter a valid name.");
   document.getElementById("name").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("name").setAttribute("class", "passed");
 }
 
 // 2. Validate Surname
@@ -112,6 +114,8 @@ if (!nameRegex.test(surname)) {
   errordetail("errorsurname", "Please enter a valid surname.");
   document.getElementById("surname").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("surname").setAttribute("class", "passed");
 }
 
 // 3. Validate Contact and alternative
@@ -119,6 +123,8 @@ if (contact.length < 10 || contact.length > 10) {
   errordetail("errorcontact", "Please enter a valid contact number");
   document.getElementById("mobile number").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("mobile number").setAttribute("class", "passed");
 }
 
 
@@ -127,6 +133,8 @@ if (acontact.length < 10 || acontact.length > 10) {
   errordetail("erroralternative", "Please enter a valid number");
   document.getElementById("alternative number").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("alternative number").setAttribute("class", "passed");
 }}
 
 //contact and alternative contact not same
@@ -142,6 +150,8 @@ if (!emailRegex.test(email)) {
   errordetail("erroremail", "Please enter a valid email");
   document.getElementById("email").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("email").setAttribute("class", "passed");
 }
 
 // 5. Validate Pincode
@@ -149,6 +159,8 @@ if (pincode.length < 6 || pincode.length > 6) {
   errordetail("errorpincode", "Please enter a valid pincode number");
   document.getElementById("pincode").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("pincode").setAttribute("class", "passed");
 }
 
 // 6. Validate City
@@ -156,6 +168,8 @@ if (!cityRegex.test(city)) {
   errordetail("errorcity", "Please enter a valid city name");
   document.getElementById("city").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("city").setAttribute("class", "passed");
 }
 
 // 7. Validate State
@@ -163,6 +177,8 @@ if (!cityRegex.test(state)) {
   errordetail("errorstate", "Please enter a valid state name");
   document.getElementById("state").setAttribute("class", "failed"); 
   return;
+}else{
+  document.getElementById("state").setAttribute("class", "passed");
 }
 
 // 8. Validate Password
