@@ -99,6 +99,7 @@ let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 let cityRegex = /^[A-Za-z\s\-]+$/;
 
 
+
 // 1. Validate Name
 if (!nameRegex.test(name)) {
   errordetail("errorname", "Please enter a valid name.");
@@ -109,7 +110,7 @@ if (!nameRegex.test(name)) {
 }
 
 // 2. Validate Surname
-if (!nameRegex.test(name)) {
+if (!nameRegex.test(surname)) {
   errordetail("errorsurname", "Please enter a valid surname.");
   document.getElementById("surname").setAttribute("class", "failed"); 
   return;
@@ -164,7 +165,7 @@ if (!cityRegex.test(city)) {
 }
 
 // 7. Validate State
-if (!cityRegex.test(city)) {
+if (!cityRegex.test(state)) {
   errordetail("errorstate", "Please enter a valid state name");
   document.getElementById("state").setAttribute("class", "failed"); 
   return;
