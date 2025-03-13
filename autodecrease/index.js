@@ -1,6 +1,6 @@
 document.getElementById("button").addEventListener("click", () => {
     let storedCount = localStorage.getItem("counter");
-    let count = storedCount !== null ?   Number(storedCount):Number(document.getElementById("number").value);
+    let count =  Number(storedCount) || Number(document.getElementById("number").value);
 
 
    counterInterval = setInterval(() => {
@@ -10,7 +10,6 @@ document.getElementById("button").addEventListener("click", () => {
 
         if (count < 0) {  
             clearInterval(counterInterval);
-            localStorage.removeItem("counter"); 
         }
-    }, 50); 
+    },50); 
 });
