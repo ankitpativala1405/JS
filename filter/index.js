@@ -1,88 +1,125 @@
 let products = JSON.parse(localStorage.getItem("products")) || [];
 
+let likes = JSON.parse(localStorage.getItem("likes")) || [];
+
 const getvalue = (id) => {
-    return document.getElementById(id).value;
+  return document.getElementById(id).value;
 };
 
 document.getElementById("myform").addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    let product = {
-        title: getvalue("title"),
-        price: getvalue("price"),
-        image: getvalue("image"),
-        category: getvalue("category")
-    };
+  let product = {
+    title: getvalue("title"),
+    price: getvalue("price"),
+    image: getvalue("image"),
+    category: getvalue("category"),
+    id: Date.now(),
+  };
 
-    products.push(product); 
+  products.push(product);
 
-    localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem("products", JSON.stringify(products));
 
-    uimaker(products); 
-
-})
+  uimaker(products);
+});
 
 const uimaker = (products) => {
-    document.getElementById("container").innerHTML = ""
-  
-    products.forEach((product,index) => {
-        let h1 = document.createElement("h1");
-        h1.innerHTML = product.title;
+  document.getElementById("container").innerHTML = "";
 
-        let p = document.createElement("p");
-        p.innerHTML = product.price;
+  products.forEach((product, index) => {
+    let h1 = document.createElement("h1");
+    h1.innerHTML = product.title;
 
-        let image = document.createElement("img"); 
-        image.src = product.image;
+    let p = document.createElement("p");
+    p.innerHTML = product.price;
 
-        let category = document.createElement("p");
-        category.innerHTML = product.category;
+    let image = document.createElement("img");
+    image.src = product.image;
 
-        let dltbtn=document.createElement('button');
-        dltbtn.innerHTML="delete"
-        dltbtn.addEventListener("click",()=>{
-            products.splice(index,1)
-            uimaker(products)
-            localStorage.setItem("products", JSON.stringify(products));
-        })
+    let category = document.createElement("p");
+    category.innerHTML = product.category;
 
-        let div = document.createElement("div");
-        div.append( image, h1, p, category,dltbtn);
-
-        container.append(div); 
+    let dltbtn = document.createElement("button");
+    dltbtn.innerHTML = "delete";
+    dltbtn.addEventListener("click", () => {
+      products.splice(index, 1);
+      uimaker(products);
+      localStorage.setItem("products", JSON.stringify(products));
     });
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "add to wishlist";
+    btn.addEventListener("click", () => {
+      if (isExist(product.id) == true) {
+        alert("product is already added");
+      } else {
+        likes.push(product);
+        localStorage.setItem("likes", JSON.stringify(likes));
+        alert("product added to wishlist")
+      }
+    });
+    let div = document.createElement("div");
+    div.append(image, h1, p, category, dltbtn,btn);
+
+    container.append(div);
+  });
 };
 
- uimaker(products)
+uimaker(products);
 
- document.getElementById("lth").addEventListener("click",()=>{
+document.getElementById("lth").addEventListener("click", () => {
+  let temp = products.sort((a, b) => a.price - b.price);
+  uimaker(temp);
+});
 
-let temp=products.sort((a,b)=>a.price-b.price)
-uimaker(temp)
- })
+document.getElementById("htl").addEventListener("click", () => {
+  let temp = products.sort((a, b) => b.price - a.price);
+  uimaker(temp);
+});
 
- document.getElementById("htl").addEventListener("click",()=>{
-  let temp= products.sort((a,b)=>b.price-a.price)
-  uimaker(temp)
- })
-
- const filterbycategory=(category)=>{
-    if(category=="all"){
-        uimaker(products);
-      
-    }else{
-    let temp=products.filter((ele)=>ele.category==category)
-    uimaker(temp)}
- }
- document.getElementById("kids").addEventListener("click", () => {
-    filterbycategory("kids");
+const filterbycategory = (category) => {
+  if (category == "all") {
+    uimaker(products);
+  } else {
+    let temp = products.filter((ele) => ele.category == category);
+    uimaker(temp);
+  }
+};
+document.getElementById("kids").addEventListener("click", () => {
+  filterbycategory("kids");
 });
 document.getElementById("mens").addEventListener("click", () => {
-    filterbycategory("mens");
+  filterbycategory("mens");
 });
 document.getElementById("womens").addEventListener("click", () => {
-    filterbycategory("womens");
+  filterbycategory("womens");
 });
 document.getElementById("all").addEventListener("click", () => {
-    filterbycategory("all");
+  filterbycategory("all");
+});
+
+document.getElementById("search").addEventListener("input", () => {
+  let value = getvalue("search");
+  search(value);
+});
+
+const search = (value) => {
+  let temp = products.filter((ele) =>
+    ele.title.toLowerCase().includes(value.toLowerCase())
+  );
+  uimaker(temp);
+};
+
+const isExist = (id) => {
+  for (let i = 0; i < likes.length; i++) {
+    if (likes[i].id == id) {
+      return true;
+    }
+  }
+  return false;
+};
+
+document.getElementById("wishlist").addEventListener("click", () => {
+  window.open('./wishlist.html');
 });
