@@ -76,6 +76,7 @@ nav a:hover {
   padding: 20px;
   background-color: #f4f4f4; 
   border-radius: 8px;
+  
 }
 
 #datalist h1 {
@@ -88,8 +89,8 @@ nav a:hover {
 }
 
 #datalist img {
-  width: 100%; 
-  height: auto; 
+  width: 100px;
+   height:250px ;
   border-radius: 8px; 
 }
 

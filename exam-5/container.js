@@ -12,6 +12,7 @@ document.getElementById("myform").addEventListener("submit", (event) => {
     image1: getvalue("image1"),
     image2: getvalue("image2"),
     containt: getvalue("containt"),
+    category:getvalue("category"),
     id: Date.now(),
   };
 
@@ -41,6 +42,7 @@ const uimaker = (conatainer) => {
 
     let div = document.createElement("div");
     div.append(title, image1, image2, containt);
+
 
     containerElement.append(div);
   });
