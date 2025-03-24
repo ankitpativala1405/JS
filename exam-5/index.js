@@ -1,36 +1,35 @@
 let conatainer = JSON.parse(localStorage.getItem("news")) || [];
 
 const uimaker = (conatainer) => {
-  let data = "";
+    document.getElementById("datalist").innerHTML = ""; 
+   
+    conatainer.map((news,index) => {
 
-  for (let i = 0; i < conatainer.length; i++) {
-    let news = conatainer[i];
-    data += `<div class="news-item">
-               <h1>${news.title}</h1>
-               <img src="${news.image1}" alt="">
-               <img src="${news.image2}" alt="">
-               <p>${news.containt}</p>
-               <p>${news.category}</p>
-             </div>
-             
-             `;
-  }
-
-  let btn = document.createElement("button");
-  btn.innerHTML = "Delete";
-  btn.addEventListener("click", () => {
-    let index = conatainer.findIndex((item) => item.id === news.id);
-    if (index > -1) {
-      conatainer.splice(index, 1);
-      localStorage.setItem("news", JSON.stringify(conatainer));
-      uimaker(conatainer);
-    }
-  });
-
-  document.getElementById("datalist").innerHTML = data;
-};
-
-uimaker(conatainer);
+      let title = document.createElement("h1");
+      title.innerHTML = news.title;
+      let image1 = document.createElement("img");
+      image1.src = news.image1;
+      let image2 = document.createElement("img");
+      image2.src = news.image2;
+      let containt = document.createElement("p");
+      containt.innerHTML = news.containt;
+      let category = document.createElement("p");
+      category.innerHTML = news.category;
+      let btn = document.createElement("button");
+      btn.innerHTML = "Delete";
+      btn.addEventListener("click", () => {
+        conatainer.splice(index,1)
+        uimaker(conatainer)
+        localStorage.setItem("news", JSON.stringify(conatainer))
+      })
+      let div = document.createElement("div");
+      div.append(title, image1, image2, containt,category,btn);
+  
+      document.getElementById("datalist").append(div);
+    });
+  };
+  
+  uimaker(conatainer);
 
 document.getElementById("sort").addEventListener("change", () => {
   let sortOption = document.getElementById("sort").value;
@@ -42,6 +41,7 @@ document.getElementById("sort").addEventListener("change", () => {
   }
 
   uimaker(conatainer);
+  localStorage.setItem("news", JSON.stringify(conatainer));
 });
 
 document.getElementById("search").addEventListener("input", () => {
