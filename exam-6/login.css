@@ -1,0 +1,10 @@
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 50px;
+    height: 50px;
+    background-color: #e2dddd;
+    border-radius: 10px;
+}
