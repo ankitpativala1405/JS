@@ -1,22 +1,73 @@
-nav{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    gap: 50px;
-    height: 50px;
-    background-color: #e2dddd;
-    border-radius: 10px;
-}
-#signupform{
-    display: flex;
+    height: 100vh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #e2dddd;
-    max-width: 500px;
-    margin-top: 200px;
-    margin-left: 600px;
-    border-radius: 10px;
-    /* margin: auto; */
 }
+
+nav {
+    width: 100%;
+    background-color: #e2dddd;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: black;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#signupform {
+    background-color: #e2dddd;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Fields Styling */
+#signupform input[type="email"],
+#signupform input[type="password"],
+#signupform input[type="text"],
+#signupform input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+#signupform input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #20c997;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+

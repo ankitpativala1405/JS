@@ -12,21 +12,20 @@ let about={
     password:getvalue("password")
 }
 
-let isExist=login.find((ele)=>ele.email==about.email);
+let isExist=login.find(ele=>ele.email==about.email);
 
 if(isExist){
-    // alert("login succsessfull")
+
     let password=login.find((ele)=>ele.password==about.password);
     if(password){
          alert("login succsessfull")
     }else{
-        alert("wrong password")
+        alert("...Please enter your valid password.")
     }
 }else{
-    alert("Sorry !!... you have no account.....")
-
-// signup.push(about)
-// localStorage.setItem("signup",JSON.stringify(signup))
+    let userchoise=window.confirm("...!!!... you have no account....\nClick 'ok' to create account or \n Click 'cancel' to remember with another email or contact number ")
+    if(userchoise){
+        window.location.href = './signup.html';
+    }
 }
-
 })

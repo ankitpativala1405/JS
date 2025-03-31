@@ -11,22 +11,22 @@ event.preventDefault();
 let about={
     name:getvalue("name"),
     email:getvalue("email"),
-    mumber:getvalue("mumber"),
+    number:getvalue("mumber"),
     password:getvalue("password")
 }
 
-let isExist=signup.find((ele)=>ele.email==about.email);
+let isExist=signup.find(ele=>ele.email==about.email || ele.number==about.number);
 
 if(isExist){
-    let userchoise=window.confirm("...Sorry!!!... you have an already account....\nClick 'ok' to login or \n Click 'cancel' to try with another email or contact number ")
+    let userchoise=window.confirm("...!!!... you have an already account....\nClick 'ok' to login or \n Click 'cancel' to try with another email or contact number ")
     if(userchoise){
-        window.open('./login.html')
+        window.location.href = './login.html';
     }
-    // alert("you have aready")
 }else{
 
 signup.push(about)
 localStorage.setItem("signup",JSON.stringify(signup))
+alert("Created account successfully.....")
 }
 
 })
