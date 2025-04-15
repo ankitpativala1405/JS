@@ -30,6 +30,7 @@ const getdata = async () => {
     let res = await req.json();
     console.log(res);
     uiMaker(res);
+    location.reload();
   };
 
   getdata();
