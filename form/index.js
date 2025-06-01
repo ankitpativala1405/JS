@@ -47,7 +47,6 @@ const getdata = async () => {
         td3.innerHTML=ele.email
         div.append(td1,td2,td3)
 
-
         document.getElementById("tablebody").append(div)
     })
   }
