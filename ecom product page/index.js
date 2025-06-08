@@ -1826,5 +1826,3 @@ function atc() {
 function buyn() {
     alert("product you want to buy")
 }
-
-
